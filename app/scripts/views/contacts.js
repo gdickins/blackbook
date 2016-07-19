@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import Backbone from 'backbone';
+import contactCollection from '../collections/contacts';
 
 function contacts() {
     let $contactsHeader = $(`
@@ -28,16 +29,16 @@ function contacts() {
         let $contactsRow = $(`
             <tr>
               <td>
-                ${contact.fullName}
+                ${contact.get('fullName')}
               </td>
               <td>
-                ${contact.nickname}
-              </th>
-              <td>
-                ${contact.email}
+                ${contact.get('nickname')}
               </td>
               <td>
-                ${contact.phone}
+                ${contact.get('email')}
+              </td>
+              <td>
+                ${contact.get('phone')}
               </td>
             </tr>
       `);
@@ -45,11 +46,12 @@ function contacts() {
     }
     contactCollection.on('add', renderRow);
     contactCollection.forEach(renderRow);
-    $contacts.find('input[id="newContact"]').on('click', function(evt) {
+    $contactsHeader.find('input[id="newContact"]').on('click', function(evt) {
         console.log('Adding Contact');
         location.hash = 'newContact';
     });
-    return $contacts;
+    // contactCollection.get(contact).forEach(renderRow);
+    return $contactsHeader;
 }
 
 

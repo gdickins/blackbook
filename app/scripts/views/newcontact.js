@@ -20,13 +20,15 @@ function newContact() {
           fullName: $('#fullName').val(),
           nickname: $('#nickname').val(),
           email: $('#email').val(),
-          telephone: $('#telephone').val(),
+          phone: $('#telephone').val(),
           author: user.username
         }, {
+
           success: function() {
             location.hash = 'contacts';
           }
         });
+
 
     });
     return $newContact;
